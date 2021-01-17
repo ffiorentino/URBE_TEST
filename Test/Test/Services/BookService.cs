@@ -11,6 +11,7 @@ using Test.Models.Response;
 using System.Threading.Tasks;
 using StatusCodeNet = System.Net.HttpStatusCode;
 using System.Globalization;
+using Test.Models.DTO;
 
 namespace Test.Services
 {
@@ -35,9 +36,9 @@ namespace Test.Services
                     param.Add("@toDate", toDate, DbType.DateTime);
                     param.Add("@state", StateBook.Confirmed, DbType.Int32);
 
-                    int result = await con.ExecuteScalarAsync<int>("uspSaveBook", param, commandType: CommandType.StoredProcedure);
-
-                    return new ResponseBook { success = true, message = new MessageResponse { code = 1, text = "La reserva fue dada de alta correctamente con el ID " + result } };
+                    var result = await con.QueryAsync<BookDTO>("uspSaveBook", param, commandType: CommandType.StoredProcedure);
+                                        
+                    return new ResponseBook { success = result.FirstOrDefault().infoCode, message = new MessageResponse { code = 1, text = result.FirstOrDefault().infoMessage } };
                 }
             }
             catch (Exception ex)

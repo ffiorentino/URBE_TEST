@@ -66,13 +66,19 @@ namespace Test.Services
             return oRoom;
         }
 
-        public async Task<IEnumerable<Room>> GetAll()
+        public async Task<IEnumerable<Room>> GetAll(Room oRoom)
         {
             try
             {
                 using (IDbConnection con = new SqlConnection(Global.ConnectionString))
                 {
-                    return await con.QueryAsync<Room>("uspGetRooms", null, null, CommandType.StoredProcedure);
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@Capacity", oRoom.capacity, DbType.Int32);
+                    param.Add("@Projector", oRoom.projector, DbType.Boolean);
+                    param.Add("@Blackboard", oRoom.blackboard, DbType.Boolean);
+                    param.Add("@Wifi", oRoom.wifi, DbType.Boolean);
+
+                    return await con.QueryAsync<Room>("uspGetRooms", param, commandType: CommandType.StoredProcedure);
                 }
             }
             catch (Exception ex)

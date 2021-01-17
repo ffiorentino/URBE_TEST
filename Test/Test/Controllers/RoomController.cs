@@ -21,6 +21,12 @@ namespace Test.Controllers
             _oRoomService = oRoomService;
         }
 
+        [HttpGet]
+        public Task<IEnumerable<Room>> GetAll(Room room)
+        {
+            return _oRoomService.GetAll(room);
+        }
+
         [HttpPost]
         public Task<ResponseRoom> Create(Room room)
         {
