@@ -10,18 +10,12 @@ using Test.Models;
 using Test.Models.Response;
 using System.Threading.Tasks;
 using StatusCodeNet = System.Net.HttpStatusCode;
+using Test.Models.DTO;
 
 namespace Test.Services
 {
     public class RoomService : IRoomService
     {
-        //private readonly IDbConnection _connection;
-
-        //public RoomService(string connectionString)
-        //{
-        //    if (_connection == null)
-        //        _connection = new SqlConnection(connectionString);
-        //}
 
         public async Task<ResponseRoom> Delete(int id)
         {
@@ -32,9 +26,9 @@ namespace Test.Services
                     DynamicParameters param = new DynamicParameters();
                     param.Add("@Id", id, DbType.Int32);
      
-                    var result = await con.ExecuteAsync("uspDeleteRoom", param, commandType: CommandType.StoredProcedure);
+                    var result = await con.QueryAsync<DTO>("uspDeleteRoom", param, commandType: CommandType.StoredProcedure);
 
-                    return new ResponseRoom { success = true, message = new MessageResponse { code = 1, text = "Se elimino la sala " + id } };
+                    return new ResponseRoom { success = result.FirstOrDefault().infoCode, message = new MessageResponse { code = 1, text = result.FirstOrDefault().infoMessage } };
                 }
             }
             catch (Exception ex)

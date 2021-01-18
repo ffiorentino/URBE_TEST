@@ -26,3 +26,4 @@ C:\Users\fiore\source\repos\Test\Test\obj\Debug\netcoreapp3.1\Test.csproj.CopyCo
 C:\Users\fiore\source\repos\Test\Test\bin\Debug\netcoreapp3.1\Dapper.dll
 C:\Users\fiore\source\repos\Test\Test\obj\Debug\netcoreapp3.1\Test.csproj.CoreCompileInputs.cache
 C:\Users\fiore\source\repos\Test\Test\obj\Debug\netcoreapp3.1\Test.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\fiore\source\repos\Test\Test\bin\Debug\netcoreapp3.1\PostMan\URBE.postman_collection.json

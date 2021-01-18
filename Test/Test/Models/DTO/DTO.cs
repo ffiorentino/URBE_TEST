@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Test.Models.DTO
 {
-    public class BookDTO
+    public class DTO
     {
+        public int id { get; set; }
         public bool infoCode { get; set; }
         public string infoMessage { get; set; }
     }

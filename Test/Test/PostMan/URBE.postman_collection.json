@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "b25357a4-edce-4303-9a19-6cbff1aaf1d1",
+		"name": "URBE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateRoom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Reuniones\",    \r\n    \"capacity\" : 10,    \r\n    \"project\" : false,\r\n    \"blackboard\": false,\r\n    \"wifi\": false            \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/room",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"room"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idRoom\" : 2,    \r\n    \"attendant\" : 10,    \r\n    \"useProjector\" : true,\r\n    \"useBlackboard\": false,\r\n    \"useWifi\": true,        \r\n    \"fromDate\": \"2020-01-17 08:00:00\",\r\n    \"toDate\": \"2020-01-17 09:00:00\",\r\n    \"state\": true  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/book",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"book"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancelBook",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44385/api/book?id=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"book"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateRoom",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"pruebas\",    \r\n    \"capacity\" : 4234,    \r\n    \"project\" : 1,\r\n    \"blackboard\": false,\r\n    \"wifi\": true            \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/room",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteRoom",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44385/api/room?Id=5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"room"
+					],
+					"query": [
+						{
+							"key": "Id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRooms (sugerencias de salas en base a los parametros)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"capacity\" : 9,    \r\n    \"projector\" : true,\r\n    \"blackboard\": true,\r\n    \"wifi\": true            \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/room",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReportBook",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"fromDate\" : \"2020-01-17 20:00:00\",    \r\n    \"toDate\" : \"2020-01-17 21:00:00\"          \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44385/api/book",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44385",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

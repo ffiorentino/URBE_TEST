@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using StatusCodeNet = System.Net.HttpStatusCode;
 using System.Globalization;
 using Test.Models.DTO;
+using Test.Models.Request;
 
 namespace Test.Services
 {
@@ -36,7 +37,7 @@ namespace Test.Services
                     param.Add("@toDate", toDate, DbType.DateTime);
                     param.Add("@state", StateBook.Confirmed, DbType.Int32);
 
-                    var result = await con.QueryAsync<BookDTO>("uspSaveBook", param, commandType: CommandType.StoredProcedure);
+                    var result = await con.QueryAsync<DTO>("uspSaveBook", param, commandType: CommandType.StoredProcedure);
                                         
                     return new ResponseBook { success = result.FirstOrDefault().infoCode, message = new MessageResponse { code = 1, text = result.FirstOrDefault().infoMessage } };
                 }
@@ -65,6 +66,30 @@ namespace Test.Services
             catch (Exception ex)
             {
                 return new ResponseBook { success = false, message = new MessageResponse { code = 0, text = ex.Message } };
+            }
+        }
+
+        public async Task<IEnumerable<ReportDTO>> GetReport(ReportRequest oRequest)
+        {
+            try
+            {
+                DateTime fromDate = DateTime.ParseExact(oRequest.fromDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+                DateTime toDate = DateTime.ParseExact(oRequest.toDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+                using (IDbConnection con = new SqlConnection(Global.ConnectionString))
+                {
+                    DynamicParameters param = new DynamicParameters();
+                    param.Add("@fromDate", fromDate, DbType.DateTime);
+                    param.Add("@toDate", toDate, DbType.DateTime);
+
+                    var result = await con.QueryAsync<ReportDTO>("uspReportBook", param, commandType: CommandType.StoredProcedure);
+
+                    return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
